@@ -81,7 +81,30 @@ right away after modifying its internal data set.
 
 This package outperforms the standard library implementation mentioned in the bullet points:
 
-The snippet for this performance test can be found here.
+```bash
+==================
+
+Items: 100
+Iterations: 100
+Name          Time [s]
+insert-queue  0.00131
+stdlib        0.00408
+
+insert-queue is faster by 0.00278s
+
+==================
+
+Items: 1000
+Iterations: 100
+Name          Time [s]
+insert-queue  0.13331
+stdlib        0.43173
+
+insert-queue is faster by 0.29842s
+```
+
+The snippet for this performance test can be
+found [here](https://gist.github.com/zivkovicmilos/ce12d68304e0aa7502f8f7173341821b).
 
 ## Benchmarks
 
