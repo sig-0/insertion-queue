@@ -19,8 +19,8 @@ func (q *Queue) Index(index int) Item {
 	return (*q)[index]
 }
 
-// Insert adds a new element to the priority queue
-func (q *Queue) Insert(element Item) {
+// Push adds a new element to the priority queue
+func (q *Queue) Push(element Item) {
 	*q = append(*q, element)
 	for i := len(*q) - 1; i > 0; i-- {
 		if (*q)[i].Less((*q)[i-1]) {

@@ -78,7 +78,7 @@ func TestQueue_Insert(t *testing.T) {
 			// Create a new queue
 			q := NewQueue()
 
-			// Insert items
+			// Push items
 			for _, item := range items {
 				item := item
 
@@ -91,7 +91,7 @@ func TestQueue_Insert(t *testing.T) {
 					}
 				}
 
-				q.Insert(item)
+				q.Push(item)
 			}
 
 			assert.Len(t, q, numItems)
@@ -111,9 +111,9 @@ func TestQueue_PopFront(t *testing.T) {
 	// Create a new queue
 	q := NewQueue()
 
-	// Insert items
+	// Push items
 	for _, item := range items {
-		q.Insert(item)
+		q.Push(item)
 	}
 
 	assert.Len(t, q, numItems)
@@ -129,6 +129,8 @@ func TestQueue_PopFront(t *testing.T) {
 
 		assert.Equal(t, item, popped)
 	}
+
+	assert.Len(t, q, 0)
 }
 
 func TestQueue_PopBack(t *testing.T) {
@@ -142,9 +144,9 @@ func TestQueue_PopBack(t *testing.T) {
 	// Create a new queue
 	q := NewQueue()
 
-	// Insert items
+	// Push items
 	for _, item := range items {
-		q.Insert(item)
+		q.Push(item)
 	}
 
 	assert.Len(t, q, numItems)
@@ -155,11 +157,13 @@ func TestQueue_PopBack(t *testing.T) {
 	})
 
 	// Start popping from the back
-	for i := len(items) - 1; i > 0; i-- {
+	for i := len(items) - 1; i >= 0; i-- {
 		popped := q.PopBack()
 
 		assert.Equal(t, items[i], popped)
 	}
+
+	assert.Len(t, q, 0)
 }
 
 func TestQueue_Fix(t *testing.T) {
@@ -173,9 +177,9 @@ func TestQueue_Fix(t *testing.T) {
 	// Create a new queue
 	q := NewQueue()
 
-	// Insert items
+	// Push items
 	for _, item := range items {
-		q.Insert(item)
+		q.Push(item)
 	}
 
 	assert.Len(t, q, numItems)
