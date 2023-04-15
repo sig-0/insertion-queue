@@ -131,6 +131,7 @@ func TestQueue_PopFront(t *testing.T) {
 	}
 
 	assert.Len(t, q, 0)
+	assert.Nil(t, q.PopFront())
 }
 
 func TestQueue_PopBack(t *testing.T) {
@@ -164,6 +165,7 @@ func TestQueue_PopBack(t *testing.T) {
 	}
 
 	assert.Len(t, q, 0)
+	assert.Nil(t, q.PopBack())
 }
 
 func TestQueue_Fix(t *testing.T) {
@@ -194,7 +196,7 @@ func TestQueue_Fix(t *testing.T) {
 	// Resort the queue because of the manual change
 	q.Fix()
 
-	assert.Len(t, q, numItems)
+	assert.Equal(t, q.Len(), numItems)
 	assert.True(t, isSorted(q, true))
-	assert.Equal(t, newItem, q[0])
+	assert.Equal(t, newItem, q.Index(0))
 }
