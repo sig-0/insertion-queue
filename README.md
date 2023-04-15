@@ -1,5 +1,7 @@
 ## Overview
 
+[![codecov](https://codecov.io/gh/madz-lab/insertion-queue/branch/main/graph/badge.svg?token=UJW1HMBFUM)](https://codecov.io/gh/madz-lab/insertion-queue)
+
 `insertion-queue` is a small library that implements a priority queue in slice representation, where the order of items
 is sorted using insertion sort.
 
