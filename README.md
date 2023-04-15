@@ -86,21 +86,21 @@ This package outperforms the standard library implementation mentioned in the bu
 
 Items: 100
 Iterations: 100
-Name          Time [s]
-insert-queue  0.00131
-stdlib        0.00408
+Name             Time [s]
+insertion-queue  0.00137
+stdlib           0.00404
 
-insert-queue is faster by 0.00278s
+insertion-queue is faster by 0.00267s
 
 ==================
 
 Items: 1000
 Iterations: 100
-Name          Time [s]
-insert-queue  0.13331
-stdlib        0.43173
+Name             Time [s]
+insertion-queue  0.13429
+stdlib           0.41784
 
-insert-queue is faster by 0.29842s
+insertion-queue is faster by 0.28356s
 ```
 
 The snippet for this performance test can be
