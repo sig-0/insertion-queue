@@ -25,7 +25,6 @@ func isSorted(q Queue, ascending bool) bool {
 		if !cmp(q[i].(*mockItem), q[i+1].(*mockItem)) {
 			return false
 		}
-
 	}
 
 	return true
@@ -34,6 +33,7 @@ func isSorted(q Queue, ascending bool) bool {
 // generateRandomItems generates a random item set
 func generateRandomItems(count int) []*mockItem {
 	var (
+		//nolint:gosec // Fine to use this for testing
 		r     = rand.New(rand.NewSource(time.Now().UnixNano()))
 		items = make([]*mockItem, count)
 	)
