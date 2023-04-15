@@ -54,7 +54,7 @@ func benchmarkPop(
 }
 
 func BenchmarkHeap_PopFront10(b *testing.B) {
-	items := generateRandomItems(1)
+	items := generateRandomItems(10)
 
 	b.ResetTimer()
 	benchmarkPop(b, items, func(q *Queue) {
