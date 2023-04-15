@@ -6,9 +6,9 @@ type lessDelegate func(Item) bool
 
 // mockItem is a mockable Item
 type mockItem struct {
-	value int
-
 	lessFn lessDelegate
+
+	value int
 }
 
 func (m *mockItem) Less(i Item) bool {

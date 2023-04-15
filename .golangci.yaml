@@ -108,6 +108,8 @@ linters-settings:
       - io.Copy(os.Stdout)
   nakedret:
     max-func-lines: 1
+  govet:
+    enable-all: true
   gofmt:
     simplify: true
   goconst:
