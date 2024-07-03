@@ -10,19 +10,9 @@ import (
 )
 
 // isSorted checks if the queue is sorted
-func isSorted(q Queue, ascending bool) bool {
-	cmp := func(a, b *mockItem) bool {
-		return a.value <= b.value
-	}
-
-	if !ascending {
-		cmp = func(a, b *mockItem) bool {
-			return a.value >= b.value
-		}
-	}
-
+func isSorted[T Item[T]](q Queue[T]) bool {
 	for i := 0; i < len(q)-1; i++ {
-		if !cmp(q[i].(*mockItem), q[i+1].(*mockItem)) {
+		if !q[i].Less(q[i+1]) {
 			return false
 		}
 	}
@@ -76,7 +66,7 @@ func TestQueue_Insert(t *testing.T) {
 			)
 
 			// Create a new queue
-			q := NewQueue()
+			q := NewQueue[*mockItem]()
 
 			// Push items
 			for _, item := range items {
@@ -84,10 +74,8 @@ func TestQueue_Insert(t *testing.T) {
 
 				if !testCase.ascending {
 					// Prep the items if needed (min / max)
-					item.lessFn = func(i Item) bool {
-						other, _ := i.(*mockItem)
-
-						return item.value >= other.value
+					item.lessFn = func(i *mockItem) bool {
+						return item.value >= i.value
 					}
 				}
 
@@ -95,7 +83,7 @@ func TestQueue_Insert(t *testing.T) {
 			}
 
 			assert.Len(t, q, numItems)
-			assert.True(t, isSorted(q, testCase.ascending))
+			assert.True(t, isSorted(q))
 		})
 	}
 }
@@ -109,7 +97,7 @@ func TestQueue_PopFront(t *testing.T) {
 	)
 
 	// Create a new queue
-	q := NewQueue()
+	q := NewQueue[*mockItem]()
 
 	// Push items
 	for _, item := range items {
@@ -127,7 +115,7 @@ func TestQueue_PopFront(t *testing.T) {
 	for _, item := range items {
 		popped := q.PopFront()
 
-		assert.Equal(t, item, popped)
+		assert.Equal(t, item, *popped)
 	}
 
 	assert.Len(t, q, 0)
@@ -143,7 +131,7 @@ func TestQueue_PopBack(t *testing.T) {
 	)
 
 	// Create a new queue
-	q := NewQueue()
+	q := NewQueue[*mockItem]()
 
 	// Push items
 	for _, item := range items {
@@ -161,7 +149,7 @@ func TestQueue_PopBack(t *testing.T) {
 	for i := len(items) - 1; i >= 0; i-- {
 		popped := q.PopBack()
 
-		assert.Equal(t, items[i], popped)
+		assert.Equal(t, items[i], *popped)
 	}
 
 	assert.Len(t, q, 0)
@@ -177,7 +165,7 @@ func TestQueue_Fix(t *testing.T) {
 	)
 
 	// Create a new queue
-	q := NewQueue()
+	q := NewQueue[*mockItem]()
 
 	// Push items
 	for _, item := range items {
@@ -197,6 +185,6 @@ func TestQueue_Fix(t *testing.T) {
 	q.Fix()
 
 	assert.Equal(t, q.Len(), numItems)
-	assert.True(t, isSorted(q, true))
+	assert.True(t, isSorted(q))
 	assert.Equal(t, newItem, q.Index(0))
 }

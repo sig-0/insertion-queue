@@ -2,7 +2,7 @@ package queue
 
 import "fmt"
 
-type lessDelegate func(Item) bool
+type lessDelegate func(item *mockItem) bool
 
 // mockItem is a mockable Item
 type mockItem struct {
@@ -11,17 +11,12 @@ type mockItem struct {
 	value int
 }
 
-func (m *mockItem) Less(i Item) bool {
+func (m *mockItem) Less(i *mockItem) bool {
 	if m.lessFn != nil {
 		return m.lessFn(i)
 	}
 
-	other, ok := i.(*mockItem)
-	if !ok {
-		return false
-	}
-
-	return m.value < other.value
+	return m.value <= i.value
 }
 
 func (m *mockItem) String() string {
