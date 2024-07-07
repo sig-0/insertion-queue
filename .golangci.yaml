@@ -40,7 +40,6 @@ linters:
     - gosimple # Code simplification
     - govet # Official Go tool
     - ineffassign # Detects when assignments to existing variables are not used
-    - interfacer # Top-level interface suggestions
     - nakedret # Finds naked/bare returns and requires change them
     - nilerr # Requires explicit returns
     - nilnil # Requires explicit returns
