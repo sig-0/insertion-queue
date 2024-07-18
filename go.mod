@@ -1,4 +1,4 @@
-module github.com/madz-lab/insertion-queue
+module github.com/sig-0/insertion-queue
 
 go 1.19
 
