@@ -1,6 +1,6 @@
 .PHONY: lint
 lint:
-	golangci-lint run --config .golangci.yaml
+	golangci-lint run --config .github/golangci.yaml
 
 .PHONY: bench
 bench:

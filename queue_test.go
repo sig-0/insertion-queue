@@ -55,8 +55,6 @@ func TestQueue_Insert(t *testing.T) {
 	}
 
 	for _, testCase := range testTable {
-		testCase := testCase
-
 		t.Run(testCase.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -70,8 +68,6 @@ func TestQueue_Insert(t *testing.T) {
 
 			// Push items
 			for _, item := range items {
-				item := item
-
 				if !testCase.ascending {
 					// Prep the items if needed (min / max)
 					item.lessFn = func(i *mockItem) bool {

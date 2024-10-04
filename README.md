@@ -1,6 +1,6 @@
 ## Overview
 
-[![codecov](https://codecov.io/gh/madz-lab/insertion-queue/branch/main/graph/badge.svg?token=UJW1HMBFUM)](https://codecov.io/gh/madz-lab/insertion-queue)
+[![codecov](https://codecov.io/gh/madz-lab/insertion-queue/branch/main/graph/badge.svg?token=UJW1HMBFUM)](https://codecov.io/gh/sig-0/insertion-queue)
 
 `insertion-queue` is a small library that implements a priority queue in slice representation, where the order of items
 is sorted using insertion sort.
@@ -12,7 +12,7 @@ is sorted using insertion sort.
 To start using it, fetch it using `go get`:
 
 ```bash
-go get github.com/madz-lab/insertion-queue
+go get github.com/sig-0/insertion-queue
 ```
 
 ### Basic operations
@@ -41,7 +41,7 @@ func (i number) Less(other iq.Item) bool {
 
 func main() {
 	// Creating the queue
-	q := iq.NewQueue()
+	q := iq.NewQueue[number]()
 
 	// Adding an item to the queue
 	q.Push(number{1}) // [1]
@@ -89,20 +89,20 @@ This package outperforms the standard library implementation mentioned in the bu
 Items: 100
 Iterations: 100
 Name             Time [s]
-insertion-queue  0.00137
-stdlib           0.00404
+insertion-queue  0.00052
+stdlib           0.00189
 
-insertion-queue is faster by 0.00267s
+insertion-queue is faster by 0.00137s
 
 ==================
 
 Items: 1000
 Iterations: 100
 Name             Time [s]
-insertion-queue  0.13429
-stdlib           0.41784
+insertion-queue  0.03490
+stdlib           0.17314
 
-insertion-queue is faster by 0.28356s
+insertion-queue is faster by 0.13824s
 ```
 
 The snippet for this performance test can be
@@ -112,11 +112,11 @@ found [here](https://gist.github.com/zivkovicmilos/ce12d68304e0aa7502f8f71733418
 
 ```bash
 goos: darwin
-goarch: amd64
-pkg: github.com/madz-lab/insertion-queue
-cpu: Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz
-BenchmarkHeap_Push10-8           2443876               410.9 ns/op           496 B/op          5 allocs/op
-BenchmarkHeap_Push100-8            77829             14067 ns/op            4080 B/op          8 allocs/op
-BenchmarkHeap_PopFront10-8       3322941               379.2 ns/op            24 B/op          1 allocs/op
-BenchmarkHeap_PopFront100-8      1863390               624.2 ns/op            24 B/op          1 allocs/op
+goarch: arm64
+pkg: github.com/sig-0/insertion-queue
+cpu: Apple M3 Max
+BenchmarkHeap_Push10-14                  7005292               168.4 ns/op           248 B/op          5 allocs/op
+BenchmarkHeap_Push100-14                  201814              5934 ns/op            2168 B/op          8 allocs/op
+BenchmarkHeap_PopFront10-14              6614826               194.4 ns/op            24 B/op          1 allocs/op
+BenchmarkHeap_PopFront100-14             3770515               310.1 ns/op            24 B/op          1 allocs/op
 ```
